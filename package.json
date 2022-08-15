@@ -30,7 +30,7 @@
     "@aws-sdk/client-cloudformation": "3.137.0",
     "@nordicsemiconductor/asset-tracker-cloud-code-style": "11.0.110",
     "@nordicsemiconductor/cloudformation-helpers": "7.0.6",
-    "@nordicsemiconductor/e2e-bdd-test-runner": "15.1.77",
+    "@nordicsemiconductor/e2e-bdd-test-runner": "15.1.79",
     "@types/node": "17.0.31",
     "aws-cdk-lib": "2.33.0",
     "cdk": "2.33.0",
