@@ -16,8 +16,8 @@ Example use of
     npm test         # run the tests
 
 _Note: AWS CDK follows the AWS SDK way of authenticating. See
-[this guide](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html)
-to learn more._
+[this guide](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html) to
+learn more._
 
 ## Webhook receiver
 
