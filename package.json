@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node dist/feature-runner/run-features.js",
-    "postinstall": "husky install",
-    "prepublishOnly": "pinst --disable",
-    "postpublish": "pinst --enable"
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
