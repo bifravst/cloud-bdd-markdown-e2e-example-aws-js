@@ -1,7 +1,12 @@
 {
-	"extends": "@nordicsemiconductor/asset-tracker-cloud-code-style/tsconfig.json",
-	"include": ["**/*.ts"],
-	"compilerOptions": {
-		"outDir": "dist/"
-	}
+  "extends": "@nordicsemiconductor/asset-tracker-cloud-code-style/tsconfig.json",
+  "include": ["**/*.ts"],
+  "compilerOptions": {
+    "outDir": "dist/",
+    "target": "ES2022",
+    "module": "ES2022",
+    "lib": ["ES2022"],
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "Node"
+  }
 }

@@ -2,11 +2,12 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 10
+      nodejs: 14
     commands:
+      # Next will install Node.js 16
+      - n 16
       - npm install -g npm@
       - npm ci --no-audit
-      - npx tsc
   build:
     commands:
       - npx cdk deploy --trace -v --require-approval never '*'

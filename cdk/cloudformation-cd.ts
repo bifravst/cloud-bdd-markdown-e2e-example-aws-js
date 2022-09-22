@@ -1,8 +1,8 @@
 import { readFileSync } from 'fs'
 import * as path from 'path'
 import { parse } from 'url'
-import { CDApp } from './CDApp'
-import { stackBaseName } from './stackBaseName'
+import { CDApp } from './CDApp.js'
+import { stackBaseName } from './stackBaseName.js'
 
 const pjson = JSON.parse(
 	readFileSync(path.join(__dirname, '..', '..', 'package.json'), 'utf-8'),

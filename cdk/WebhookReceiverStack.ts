@@ -1,18 +1,29 @@
 import * as CDK from 'aws-cdk-lib'
-import * as ApiGateway from 'aws-cdk-lib/aws-apigateway'
 import * as IAM from 'aws-cdk-lib/aws-iam'
 import * as Lambda from 'aws-cdk-lib/aws-lambda'
 import * as Logs from 'aws-cdk-lib/aws-logs'
 import * as SQS from 'aws-cdk-lib/aws-sqs'
-import { readFileSync } from 'fs'
-import * as path from 'path'
+import { PackedLambda } from './packLambda.js'
+import { PackedLayer } from './packLayer.js'
 
 /**
  * This is the CloudFormation stack which contains the webhook receiver resources.
  */
 export class WebhookReceiverStack extends CDK.Stack {
-	public constructor(parent: CDK.App, id: string) {
+	public constructor(
+		parent: CDK.App,
+		id: string,
+		{
+			lambdaSource,
+			layer,
+		}: {
+			lambdaSource: PackedLambda
+			layer: PackedLayer
+		},
+	) {
 		super(parent, id)
+
+		const enableTracing = this.node.tryGetContext('isTest') === true
 
 		// This queue will store all the requests made to the API Gateway
 		const queue = new SQS.Queue(this, 'queue', {
@@ -21,17 +32,20 @@ export class WebhookReceiverStack extends CDK.Stack {
 			queueName: `${id}.fifo`,
 		})
 
+		const baseLayer = new Lambda.LayerVersion(this, 'baseLayer', {
+			code: Lambda.Code.fromAsset(layer.layerZipFile),
+			compatibleArchitectures: [Lambda.Architecture.ARM_64],
+			compatibleRuntimes: [Lambda.Runtime.NODEJS_16_X],
+		})
+
 		// This lambda will publish all requests made to the API Gateway in the queue
 		const lambda = new Lambda.Function(this, 'Lambda', {
 			description: 'Publishes webhook requests into SQS',
-			code: Lambda.Code.fromInline(
-				readFileSync(
-					path.resolve(process.cwd(), 'aws', 'lambda.js'),
-					'utf-8',
-				).toString(),
-			),
-			handler: 'index.handler',
-			runtime: Lambda.Runtime.NODEJS_12_X, // NODEJS_14_X does not support inline functions, yet. See https://github.com/aws/aws-cdk/pull/12861#discussion_r570038002
+			code: Lambda.Code.fromAsset(lambdaSource.lambdaZipFile),
+			layers: [baseLayer],
+			handler: lambdaSource.handler,
+			runtime: Lambda.Runtime.NODEJS_16_X,
+			architecture: Lambda.Architecture.ARM_64,
 			timeout: CDK.Duration.seconds(15),
 			initialPolicy: [
 				new IAM.PolicyStatement({
@@ -49,30 +63,33 @@ export class WebhookReceiverStack extends CDK.Stack {
 			],
 			environment: {
 				SQS_QUEUE: queue.queueUrl,
+				ENABLE_TRACING: enableTracing ? '1' : '0',
 			},
+			tracing: enableTracing ? Lambda.Tracing.ACTIVE : Lambda.Tracing.DISABLED,
 		})
+
+		if (enableTracing)
+			lambda.addToRolePolicy(
+				new IAM.PolicyStatement({
+					resources: ['*'],
+					actions: ['xray:PutTraceSegments', 'xray:PutTelemetryRecords'],
+				}),
+			)
+
 		// Create the log group here, so we can control the retention
 		new Logs.LogGroup(this, `LambdaLogGroup`, {
 			removalPolicy: CDK.RemovalPolicy.DESTROY,
-			logGroupName: `/aws/lambda/${lambda.functionName}`,
+			logGroupName: `/cdk/lambda/${lambda.functionName}`,
 			retention: Logs.RetentionDays.ONE_DAY,
 		})
 
-		// This is the API Gateway, AWS CDK automatically creates a prod stage and deployment
-		const api = new ApiGateway.RestApi(this, 'api', {
-			restApiName: 'Webhook Receiver API',
-			description: 'API Gateway to test webhook deliveries',
+		const fnUrl = lambda.addFunctionUrl({
+			authType: Lambda.FunctionUrlAuthType.NONE,
 		})
-		const proxyResource = api.root.addResource('{proxy+}')
-		proxyResource.addMethod('ANY', new ApiGateway.LambdaIntegration(lambda))
-		// API Gateway needs to be able to call the lambda
-		lambda.addPermission('InvokeByApiGateway', {
-			principal: new IAM.ServicePrincipal('apigateway.amazonaws.com'),
-			sourceArn: api.arnForExecuteApi(),
-		})
+
 		// Export these so the test runner can use them
 		new CDK.CfnOutput(this, 'ApiURL', {
-			value: api.url,
+			value: fnUrl.url,
 			exportName: `${this.stackName}:ApiURL`,
 		})
 		new CDK.CfnOutput(this, 'QueueURL', {

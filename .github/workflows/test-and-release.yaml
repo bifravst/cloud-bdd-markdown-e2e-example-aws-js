@@ -6,8 +6,8 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  AWS_REGION: eu-central-1
-  STACK_BASE_NAME: bddfrawsx-${{ github.sha }}
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+  STACK_BASE_NAME: bddawsx-${{ github.sha }}
 
 jobs:
   tests:
@@ -15,28 +15,41 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: "16.x"
+
       - name: Install dependencies
         run: npm ci --no-audit
+
       - name: Keep npm cache around to speed up installs
         uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
-      - name: Build
-        run: npx tsc
+
+      - name: Bootstrap AWS account for CDK
+        run: |
+          npx cdk bootstrap aws://`aws sts get-caller-identity | jq -r '.Account' | tr -d '\n'`/${{ secrets.AWS_REGION }}
+
       - name: Set up test resources
         run: npx cdk deploy --require-approval never
+
       - name: Test
-        run: npm test
+        run: |
+          npx tsx features/run-features.ts > e2e-test-result.json
+          cat e2e-test-result.json | npx tsx features/console-reporter.ts
+          cat e2e-test-result.json | npx tsx features/markdown-reporter.ts >> $GITHUB_STEP_SUMMARY
+          cat e2e-test-result.json | npx tsx features/traceToMermaid.ts >> $GITHUB_STEP_SUMMARY
+
       - name: Semantic release
         if: success()
         continue-on-error: true
         run: |
           npm i --no-save semantic-release@next
           npx semantic-release
+
       - name: Clean up End-to-End test resources
         if: always()
         run: npx cdk destroy -f

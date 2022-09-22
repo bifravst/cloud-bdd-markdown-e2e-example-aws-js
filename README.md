@@ -1,15 +1,15 @@
 # BDD Feature Runner for AWS Examples
 
-[![GitHub Actions](https://github.com/NordicSemiconductor/cloud-e2e-bdd-test-runner-example-js/workflows/Test%20and%20Release/badge.svg)](https://github.com/NordicSemiconductor/cloud-e2e-bdd-test-runner-example-js/actions)
+[![GitHub Actions](https://github.com/NordicSemiconductor/cloud-bdd-markdown-e2e-example-aws-js/workflows/Test%20and%20Release/badge.svg)](https://github.com/NordicSemiconductor/cloud-bdd-markdown-e2e-example-aws-js/actions)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![Renovate](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com)
-[![Mergify Status](https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/NordicSemiconductor/cloud-e2e-bdd-test-runner-example-js)](https://mergify.io)
+[![Mergify Status](https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/NordicSemiconductor/cloud-bdd-markdown-e2e-example-aws-js)](https://mergify.io)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier/)
 [![ESLint: TypeScript](https://img.shields.io/badge/ESLint-TypeScript-blue.svg)](https://github.com/typescript-eslint/typescript-eslint)
 
 Example use of
-[@nordicsemiconductor/e2e-bdd-test-runner](https://github.com/NordicSemiconductor/cloud-e2e-bdd-test-runner-js).
+[@nordicsemiconductor/bdd-markdown](https://www.npmjs.com/package/@nordicsemiconductor/bdd-markdown).
 
     npm ci           # install dependencies
     npx cdk deploy   # deploy the stack to your AWS account
@@ -21,7 +21,7 @@ learn more._
 
 ## Webhook receiver
 
-The [`Webhook.feature`](./features/Webhook.feature) shows how to use AWS
+The [`Webhook.feature.md`](./features/Webhook.feature.md) shows how to use AWS
 ApiGateway, Lambda and SQS to set up a real test double for a webhook endpoint.
 It allows to test that a component which is supposed to send a webhook is
 actually sending it.
@@ -41,7 +41,7 @@ manual step done through the AWS CLI:
 
 Then set up the continuous deployment:
 
-    npx cdk -a 'node dist/aws/cloudformation-cd.js' deploy
+    npx tsx cdk/cloudformation-cd.ts deploy
 
 ## Architecture decision records (ADRs)
 

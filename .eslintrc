@@ -1,3 +1,15 @@
 {
-	"extends": "@nordicsemiconductor/eslint-config-asset-tracker-cloud-typescript"
+  "extends": "@nordicsemiconductor/eslint-config-asset-tracker-cloud-typescript",
+  "rules": {
+    "no-constant-condition": ["off"],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
+  },
+  "plugins": ["import"]
 }
