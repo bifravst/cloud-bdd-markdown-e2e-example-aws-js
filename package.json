@@ -32,7 +32,7 @@
     "@nordicsemiconductor/asset-tracker-cloud-code-style": "11.0.133",
     "@nordicsemiconductor/bdd-markdown": "3.4.6",
     "@nordicsemiconductor/cloudformation-helpers": "7.0.6",
-    "@types/aws-lambda": "^8.10.107",
+    "@types/aws-lambda": "^8.10.108",
     "@types/glob": "8.0.0",
     "@types/node": "18.7.18",
     "@types/yazl": "2.4.2",
