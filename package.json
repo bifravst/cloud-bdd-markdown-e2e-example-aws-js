@@ -30,7 +30,7 @@
     "@aws-sdk/client-sqs": "3.194.0",
     "@aws-sdk/client-xray": "3.194.0",
     "@nordicsemiconductor/asset-tracker-cloud-code-style": "11.0.134",
-    "@nordicsemiconductor/bdd-markdown": "3.5.1",
+    "@nordicsemiconductor/bdd-markdown": "3.5.2",
     "@nordicsemiconductor/cloudformation-helpers": "7.0.6",
     "@types/aws-lambda": "^8.10.108",
     "@types/glob": "8.0.0",
