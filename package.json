@@ -26,8 +26,8 @@
   },
   "homepage": "https://github.com/NordicSemiconductor/cloud-bdd-markdown-e2e-example-aws-js#readme",
   "devDependencies": {
-    "@aws-sdk/client-cloudformation": "3.235.0",
-    "@aws-sdk/client-sqs": "3.235.0",
+    "@aws-sdk/client-cloudformation": "3.236.0",
+    "@aws-sdk/client-sqs": "3.236.0",
     "@aws-sdk/client-xray": "3.235.0",
     "@nordicsemiconductor/asset-tracker-cloud-code-style": "11.0.160",
     "@nordicsemiconductor/bdd-markdown": "3.5.22",
