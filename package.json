@@ -34,7 +34,7 @@
     "@nordicsemiconductor/cloudformation-helpers": "7.0.7",
     "@types/aws-lambda": "^8.10.109",
     "@types/glob": "8.0.0",
-    "@types/node": "18.11.17",
+    "@types/node": "18.11.18",
     "@types/yazl": "2.4.2",
     "aws-cdk-lib": "2.56.1",
     "cdk": "2.56.1",
