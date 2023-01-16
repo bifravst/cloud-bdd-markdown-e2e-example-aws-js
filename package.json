@@ -40,7 +40,7 @@
     "cdk": "2.60.0",
     "constructs": "10.1.221",
     "dependency-tree": "9.0.0",
-    "eslint-plugin-import": "2.27.4",
+    "eslint-plugin-import": "2.27.5",
     "glob": "8.1.0",
     "node-fetch": "3.3.0",
     "tsx": "3.12.2",
