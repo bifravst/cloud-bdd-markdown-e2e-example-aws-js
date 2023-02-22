@@ -33,7 +33,7 @@
     "@nordicsemiconductor/bdd-markdown": "3.5.31",
     "@nordicsemiconductor/cloudformation-helpers": "7.0.7",
     "@types/aws-lambda": "^8.10.110",
-    "@types/glob": "8.0.1",
+    "@types/glob": "8.1.0",
     "@types/node": "18.14.0",
     "@types/yazl": "2.4.2",
     "aws-cdk-lib": "2.66.0",
