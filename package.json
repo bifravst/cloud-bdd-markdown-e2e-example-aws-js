@@ -43,7 +43,7 @@
     "eslint-plugin-import": "2.27.5",
     "glob": "8.1.0",
     "node-fetch": "3.3.1",
-    "tsx": "3.12.3",
+    "tsx": "3.12.4",
     "yazl": "2.5.1"
   },
   "lint-staged": {
