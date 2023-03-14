@@ -1,0 +1,728 @@
+{
+  "ok": false,
+  "results": [
+    [
+      {
+        "root": "/",
+        "dir": "/Users/pud/Documents/repo/works/nrf.guide-backend/features",
+        "base": "QueueToWebsocket.feature.md",
+        "ext": ".md",
+        "name": "QueueToWebsocket.feature"
+      },
+      {
+        "ok": true,
+        "results": [
+          [
+            {
+              "keyword": "Scenario",
+              "title": "Background",
+              "line": 7,
+              "steps": [
+                {
+                  "keyword": "Given",
+                  "title": "There is a device as this JSON",
+                  "line": 9,
+                  "codeBlock": {
+                    "code": "{\n  \"id\": \"nrf-test-device-id\",\n  \"deviceId\": \"nrf-test-device-id\",\n  \"secret\": \"my-secret\",\n  \"name\": \"nrf-test-device-id\",\n  \"subType\": \"jitp-nordic-hardware\",\n  \"tags\": [\"temperature\", \"warehouse-east\"],\n  \"firmware\": {\n    \"supports\": [\"APP\", \"MODEM\"],\n    \"app\": {\n      \"version\": \"0.0.0-development\"\n    },\n    \"modem\": \"mfw_nrf9160_1.3.3\"\n  },\n  \"type\": \"Generic\"\n}",
+                    "language": "json"
+                  }
+                }
+              ]
+            },
+            {
+              "ok": true,
+              "results": [
+                [
+                  {
+                    "keyword": "Given",
+                    "title": "There is a device as this JSON",
+                    "line": 9,
+                    "codeBlock": {
+                      "code": "{\n  \"id\": \"nrf-test-device-id\",\n  \"deviceId\": \"nrf-test-device-id\",\n  \"secret\": \"my-secret\",\n  \"name\": \"nrf-test-device-id\",\n  \"subType\": \"jitp-nordic-hardware\",\n  \"tags\": [\"temperature\", \"warehouse-east\"],\n  \"firmware\": {\n    \"supports\": [\"APP\", \"MODEM\"],\n    \"app\": {\n      \"version\": \"0.0.0-development\"\n    },\n    \"modem\": \"mfw_nrf9160_1.3.3\"\n  },\n  \"type\": \"Generic\"\n}",
+                      "language": "json"
+                    }
+                  },
+                  {
+                    "logs": [
+                      {
+                        "message": [
+                          "Put data into database nrf-guide-test-WebsocketAPIdevicesTable0E555FB2-1MPYM52I6DS06"
+                        ],
+                        "level": "progress",
+                        "ts": 0
+                      },
+                      {
+                        "message": ["Request status: 200"],
+                        "level": "progress",
+                        "ts": 0
+                      }
+                    ],
+                    "ok": true,
+                    "duration": 94,
+                    "executed": {
+                      "keyword": "Given",
+                      "title": "There is a device as this JSON",
+                      "line": 9,
+                      "codeBlock": {
+                        "code": "{\n  \"id\": \"nrf-test-device-id\",\n  \"deviceId\": \"nrf-test-device-id\",\n  \"secret\": \"my-secret\",\n  \"name\": \"nrf-test-device-id\",\n  \"subType\": \"jitp-nordic-hardware\",\n  \"tags\": [\"temperature\", \"warehouse-east\"],\n  \"firmware\": {\n    \"supports\": [\"APP\", \"MODEM\"],\n    \"app\": {\n      \"version\": \"0.0.0-development\"\n    },\n    \"modem\": \"mfw_nrf9160_1.3.3\"\n  },\n  \"type\": \"Generic\"\n}",
+                        "language": "json"
+                      }
+                    },
+                    "tries": 1,
+                    "skipped": false
+                  }
+                ]
+              ],
+              "duration": 94,
+              "logs": [],
+              "skipped": false
+            }
+          ],
+          [
+            {
+              "keyword": "Scenario",
+              "title": "Verify a message published to SQS queue will be delivered to websocket client",
+              "line": 30,
+              "steps": [
+                {
+                  "keyword": "When",
+                  "title": "I connect websocket with code `my-secret`",
+                  "line": 32
+                },
+                {
+                  "keyword": "When",
+                  "title": "I send message to queue with this JSON",
+                  "line": 34,
+                  "codeBlock": {
+                    "code": "{\n  \"sender\": \"nrf-test-device-id\",\n  \"receivers\": [\"nrf-test-device-id\"],\n  \"topic\": \"data/m/d/nrf-test-device-id/d2c\",\n  \"payload\": {\n    \"state\": {\n      \"desired\": {\n        \"pairing\": {\n          \"state\": \"paired\",\n          \"topics\": {\n            \"d2c\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/m/d/nrf-test-device-id/d2c\",\n            \"c2d\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/m/d/nrf-test-device-id/+/r\"\n          }\n        },\n        \"nrfcloud_mqtt_topic_prefix\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/\"\n      }\n    }\n  }\n}",
+                    "language": "json"
+                  }
+                },
+                {
+                  "keyword": "Then",
+                  "title": "the response should equal to this JSON",
+                  "line": 58,
+                  "codeBlock": {
+                    "code": "{\n  \"sender\": \"nrf-test-device-id\",\n  \"topic\": \"data/m/d/nrf-test-device-id/d2c\",\n  \"payload\": {\n    \"state\": {\n      \"desired\": {\n        \"pairing\": {\n          \"state\": \"paired\",\n          \"topics\": {\n            \"d2c\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/m/d/nrf-test-device-id/d2c\",\n            \"c2d\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/m/d/nrf-test-device-id/+/r\"\n          }\n        },\n        \"nrfcloud_mqtt_topic_prefix\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/\"\n      }\n    }\n  }\n}",
+                    "language": "json"
+                  }
+                },
+                {
+                  "keyword": "Then",
+                  "title": "I close connection",
+                  "line": 81
+                }
+              ]
+            },
+            {
+              "ok": true,
+              "results": [
+                [
+                  {
+                    "keyword": "When",
+                    "title": "I connect websocket with code `my-secret`",
+                    "line": 32
+                  },
+                  {
+                    "logs": [
+                      {
+                        "message": [
+                          "Connect websocket to wss://atxx59uhfl.execute-api.eu-north-1.amazonaws.com/dev"
+                        ],
+                        "level": "progress",
+                        "ts": 94
+                      }
+                    ],
+                    "ok": true,
+                    "duration": 186,
+                    "executed": {
+                      "keyword": "When",
+                      "title": "I connect websocket with code `my-secret`",
+                      "line": 32
+                    },
+                    "tries": 1,
+                    "skipped": false
+                  }
+                ],
+                [
+                  {
+                    "keyword": "When",
+                    "title": "I send message to queue with this JSON",
+                    "line": 34,
+                    "codeBlock": {
+                      "code": "{\n  \"sender\": \"nrf-test-device-id\",\n  \"receivers\": [\"nrf-test-device-id\"],\n  \"topic\": \"data/m/d/nrf-test-device-id/d2c\",\n  \"payload\": {\n    \"state\": {\n      \"desired\": {\n        \"pairing\": {\n          \"state\": \"paired\",\n          \"topics\": {\n            \"d2c\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/m/d/nrf-test-device-id/d2c\",\n            \"c2d\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/m/d/nrf-test-device-id/+/r\"\n          }\n        },\n        \"nrfcloud_mqtt_topic_prefix\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/\"\n      }\n    }\n  }\n}",
+                      "language": "json"
+                    }
+                  },
+                  {
+                    "logs": [
+                      {
+                        "message": [
+                          "Publish to queue https://sqs.eu-north-1.amazonaws.com/752072828702/nrf-guide-test-WebsocketAPIwebsocketQueue52F1D671-U7PZDokq33LR"
+                        ],
+                        "level": "progress",
+                        "ts": 280
+                      }
+                    ],
+                    "ok": true,
+                    "duration": 109,
+                    "executed": {
+                      "keyword": "When",
+                      "title": "I send message to queue with this JSON",
+                      "line": 34,
+                      "codeBlock": {
+                        "code": "{\n  \"sender\": \"nrf-test-device-id\",\n  \"receivers\": [\"nrf-test-device-id\"],\n  \"topic\": \"data/m/d/nrf-test-device-id/d2c\",\n  \"payload\": {\n    \"state\": {\n      \"desired\": {\n        \"pairing\": {\n          \"state\": \"paired\",\n          \"topics\": {\n            \"d2c\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/m/d/nrf-test-device-id/d2c\",\n            \"c2d\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/m/d/nrf-test-device-id/+/r\"\n          }\n        },\n        \"nrfcloud_mqtt_topic_prefix\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/\"\n      }\n    }\n  }\n}",
+                        "language": "json"
+                      }
+                    },
+                    "tries": 1,
+                    "skipped": false
+                  }
+                ],
+                [
+                  {
+                    "keyword": "Then",
+                    "title": "the response should equal to this JSON",
+                    "line": 58,
+                    "codeBlock": {
+                      "code": "{\n  \"sender\": \"nrf-test-device-id\",\n  \"topic\": \"data/m/d/nrf-test-device-id/d2c\",\n  \"payload\": {\n    \"state\": {\n      \"desired\": {\n        \"pairing\": {\n          \"state\": \"paired\",\n          \"topics\": {\n            \"d2c\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/m/d/nrf-test-device-id/d2c\",\n            \"c2d\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/m/d/nrf-test-device-id/+/r\"\n          }\n        },\n        \"nrfcloud_mqtt_topic_prefix\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/\"\n      }\n    }\n  }\n}",
+                      "language": "json"
+                    }
+                  },
+                  {
+                    "logs": [
+                      {
+                        "message": [
+                          "Received ws message",
+                          "{\n  \"sender\": \"nrf-test-device-id\",\n  \"topic\": \"data/m/d/nrf-test-device-id/d2c\",\n  \"payload\": {\n    \"state\": {\n      \"desired\": {\n        \"pairing\": {\n          \"state\": \"paired\",\n          \"topics\": {\n            \"d2c\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/m/d/nrf-test-device-id/d2c\",\n            \"c2d\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/m/d/nrf-test-device-id/+/r\"\n          }\n        },\n        \"nrfcloud_mqtt_topic_prefix\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/\"\n      }\n    }\n  }\n}"
+                        ],
+                        "level": "progress",
+                        "ts": 389
+                      }
+                    ],
+                    "ok": true,
+                    "duration": 506,
+                    "executed": {
+                      "keyword": "Then",
+                      "title": "the response should equal to this JSON",
+                      "line": 58,
+                      "codeBlock": {
+                        "code": "{\n  \"sender\": \"nrf-test-device-id\",\n  \"topic\": \"data/m/d/nrf-test-device-id/d2c\",\n  \"payload\": {\n    \"state\": {\n      \"desired\": {\n        \"pairing\": {\n          \"state\": \"paired\",\n          \"topics\": {\n            \"d2c\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/m/d/nrf-test-device-id/d2c\",\n            \"c2d\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/m/d/nrf-test-device-id/+/r\"\n          }\n        },\n        \"nrfcloud_mqtt_topic_prefix\": \"prod/543c2184-c7fe-4ca6-a2a0-c06db425fbbf/\"\n      }\n    }\n  }\n}",
+                        "language": "json"
+                      }
+                    },
+                    "tries": 1,
+                    "skipped": false
+                  }
+                ],
+                [
+                  {
+                    "keyword": "Then",
+                    "title": "I close connection",
+                    "line": 81
+                  },
+                  {
+                    "logs": [
+                      {
+                        "message": ["Close websocket"],
+                        "level": "progress",
+                        "ts": 895
+                      }
+                    ],
+                    "ok": true,
+                    "duration": 1,
+                    "executed": {
+                      "keyword": "Then",
+                      "title": "I close connection",
+                      "line": 81
+                    },
+                    "tries": 1,
+                    "skipped": false
+                  }
+                ]
+              ],
+              "duration": 802,
+              "logs": [],
+              "skipped": false
+            }
+          ]
+        ],
+        "duration": 896,
+        "logs": [],
+        "skipped": false
+      }
+    ],
+    [
+      {
+        "root": "/",
+        "dir": "/Users/pud/Documents/repo/works/nrf.guide-backend/features",
+        "base": "DeviceToWebsocket.feature.md",
+        "ext": ".md",
+        "name": "DeviceToWebsocket.feature"
+      },
+      {
+        "ok": true,
+        "results": [
+          [
+            {
+              "keyword": "Scenario",
+              "title": "Background",
+              "line": 8,
+              "steps": [
+                {
+                  "keyword": "Given",
+                  "title": "There is a device as this JSON",
+                  "line": 10,
+                  "codeBlock": {
+                    "code": "{\n  \"id\": \"nrf-test-device-id\",\n  \"deviceId\": \"nrf-test-device-id\",\n  \"secret\": \"my-secret\",\n  \"name\": \"nrf-test-device-id\",\n  \"subType\": \"jitp-nordic-hardware\",\n  \"tags\": [\"temperature\", \"warehouse-east\"],\n  \"firmware\": {\n    \"supports\": [\"APP\", \"MODEM\"],\n    \"app\": {\n      \"version\": \"0.0.0-development\"\n    },\n    \"modem\": \"mfw_nrf9160_1.3.3\"\n  },\n  \"type\": \"Generic\"\n}",
+                    "language": "json"
+                  }
+                }
+              ]
+            },
+            {
+              "ok": true,
+              "results": [
+                [
+                  {
+                    "keyword": "Given",
+                    "title": "There is a device as this JSON",
+                    "line": 10,
+                    "codeBlock": {
+                      "code": "{\n  \"id\": \"nrf-test-device-id\",\n  \"deviceId\": \"nrf-test-device-id\",\n  \"secret\": \"my-secret\",\n  \"name\": \"nrf-test-device-id\",\n  \"subType\": \"jitp-nordic-hardware\",\n  \"tags\": [\"temperature\", \"warehouse-east\"],\n  \"firmware\": {\n    \"supports\": [\"APP\", \"MODEM\"],\n    \"app\": {\n      \"version\": \"0.0.0-development\"\n    },\n    \"modem\": \"mfw_nrf9160_1.3.3\"\n  },\n  \"type\": \"Generic\"\n}",
+                      "language": "json"
+                    }
+                  },
+                  {
+                    "logs": [
+                      {
+                        "message": [
+                          "Put data into database nrf-guide-test-WebsocketAPIdevicesTable0E555FB2-1MPYM52I6DS06"
+                        ],
+                        "level": "progress",
+                        "ts": 1
+                      },
+                      {
+                        "message": ["Request status: 200"],
+                        "level": "progress",
+                        "ts": 1
+                      }
+                    ],
+                    "ok": true,
+                    "duration": 16,
+                    "executed": {
+                      "keyword": "Given",
+                      "title": "There is a device as this JSON",
+                      "line": 10,
+                      "codeBlock": {
+                        "code": "{\n  \"id\": \"nrf-test-device-id\",\n  \"deviceId\": \"nrf-test-device-id\",\n  \"secret\": \"my-secret\",\n  \"name\": \"nrf-test-device-id\",\n  \"subType\": \"jitp-nordic-hardware\",\n  \"tags\": [\"temperature\", \"warehouse-east\"],\n  \"firmware\": {\n    \"supports\": [\"APP\", \"MODEM\"],\n    \"app\": {\n      \"version\": \"0.0.0-development\"\n    },\n    \"modem\": \"mfw_nrf9160_1.3.3\"\n  },\n  \"type\": \"Generic\"\n}",
+                        "language": "json"
+                      }
+                    },
+                    "tries": 1,
+                    "skipped": false
+                  }
+                ]
+              ],
+              "duration": 16,
+              "logs": [],
+              "skipped": false
+            }
+          ],
+          [
+            {
+              "keyword": "Scenario",
+              "title": "Verify a device sends a message to nRF Cloud, then I can receive the message via website",
+              "line": 31,
+              "steps": [
+                {
+                  "keyword": "When",
+                  "title": "I connect websocket with code `my-secret`",
+                  "line": 33
+                },
+                {
+                  "keyword": "When",
+                  "title": "a device with id `nrf-test-device-id` publishes to topic `m/d/nrf-test-device-id/d2c` with a message as this JSON",
+                  "line": 35,
+                  "codeBlock": {
+                    "code": "{\n  \"appId\": \"GROUND_FIX\",\n  \"messageType\": \"DATA\",\n  \"data\": {\n    \"doReply\": false,\n    \"wifi\": {\n      \"accessPoints\": [\n        {\n          \"macAddress\": \"fd:70:40:b9:58:dc\"\n        },\n        {\n          \"macAddress\": \"c5:ab:c7:55:8d:e3\"\n        }\n      ]\n    },\n    \"lte\": [\n      {\n        \"mnc\": 260,\n        \"mcc\": 310,\n        \"eci\": 21858829,\n        \"tac\": 333,\n        \"rsrp\": -157,\n        \"rsrq\": -34.5,\n        \"earfcn\": 41490,\n        \"nmr\": [\n          {\n            \"pci\": 143,\n            \"earfcn\": 41490,\n            \"rsrp\": -44,\n            \"rsrq\": -3.5\n          }\n        ]\n      }\n    ]\n  }\n}",
+                    "language": "json"
+                  }
+                },
+                {
+                  "keyword": "Then",
+                  "title": "the response should equal to this JSON",
+                  "line": 77,
+                  "codeBlock": {
+                    "code": "{\n  \"sender\": \"nrf-test-device-id\",\n  \"topic\": \"data/m/d/nrf-test-device-id/d2c\",\n  \"payload\": {\n    \"appId\": \"GROUND_FIX\",\n    \"messageType\": \"DATA\",\n    \"data\": {\n      \"doReply\": false,\n      \"wifi\": {\n        \"accessPoints\": [\n          {\n            \"macAddress\": \"fd:70:40:b9:58:dc\"\n          },\n          {\n            \"macAddress\": \"c5:ab:c7:55:8d:e3\"\n          }\n        ]\n      },\n      \"lte\": [\n        {\n          \"mnc\": 260,\n          \"mcc\": 310,\n          \"eci\": 21858829,\n          \"tac\": 333,\n          \"rsrp\": -157,\n          \"rsrq\": -34.5,\n          \"earfcn\": 41490,\n          \"nmr\": [\n            {\n              \"pci\": 143,\n              \"earfcn\": 41490,\n              \"rsrp\": -44,\n              \"rsrq\": -3.5\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+                    "language": "json"
+                  }
+                },
+                {
+                  "keyword": "Then",
+                  "title": "I close connection",
+                  "line": 122
+                }
+              ]
+            },
+            {
+              "ok": true,
+              "results": [
+                [
+                  {
+                    "keyword": "When",
+                    "title": "I connect websocket with code `my-secret`",
+                    "line": 33
+                  },
+                  {
+                    "logs": [
+                      {
+                        "message": [
+                          "Connect websocket to wss://atxx59uhfl.execute-api.eu-north-1.amazonaws.com/dev"
+                        ],
+                        "level": "progress",
+                        "ts": 17
+                      }
+                    ],
+                    "ok": true,
+                    "duration": 116,
+                    "executed": {
+                      "keyword": "When",
+                      "title": "I connect websocket with code `my-secret`",
+                      "line": 33
+                    },
+                    "tries": 1,
+                    "skipped": false
+                  }
+                ],
+                [
+                  {
+                    "keyword": "When",
+                    "title": "a device with id `nrf-test-device-id` publishes to topic `m/d/nrf-test-device-id/d2c` with a message as this JSON",
+                    "line": 35,
+                    "codeBlock": {
+                      "code": "{\n  \"appId\": \"GROUND_FIX\",\n  \"messageType\": \"DATA\",\n  \"data\": {\n    \"doReply\": false,\n    \"wifi\": {\n      \"accessPoints\": [\n        {\n          \"macAddress\": \"fd:70:40:b9:58:dc\"\n        },\n        {\n          \"macAddress\": \"c5:ab:c7:55:8d:e3\"\n        }\n      ]\n    },\n    \"lte\": [\n      {\n        \"mnc\": 260,\n        \"mcc\": 310,\n        \"eci\": 21858829,\n        \"tac\": 333,\n        \"rsrp\": -157,\n        \"rsrq\": -34.5,\n        \"earfcn\": 41490,\n        \"nmr\": [\n          {\n            \"pci\": 143,\n            \"earfcn\": 41490,\n            \"rsrp\": -44,\n            \"rsrq\": -3.5\n          }\n        ]\n      }\n    ]\n  }\n}",
+                      "language": "json"
+                    }
+                  },
+                  {
+                    "logs": [
+                      {
+                        "message": [
+                          "Device id nrf-test-device-id publishes to topic m/d/nrf-test-device-id/d2c"
+                        ],
+                        "level": "progress",
+                        "ts": 133
+                      }
+                    ],
+                    "ok": true,
+                    "duration": 278,
+                    "executed": {
+                      "keyword": "When",
+                      "title": "a device with id `nrf-test-device-id` publishes to topic `m/d/nrf-test-device-id/d2c` with a message as this JSON",
+                      "line": 35,
+                      "codeBlock": {
+                        "code": "{\n  \"appId\": \"GROUND_FIX\",\n  \"messageType\": \"DATA\",\n  \"data\": {\n    \"doReply\": false,\n    \"wifi\": {\n      \"accessPoints\": [\n        {\n          \"macAddress\": \"fd:70:40:b9:58:dc\"\n        },\n        {\n          \"macAddress\": \"c5:ab:c7:55:8d:e3\"\n        }\n      ]\n    },\n    \"lte\": [\n      {\n        \"mnc\": 260,\n        \"mcc\": 310,\n        \"eci\": 21858829,\n        \"tac\": 333,\n        \"rsrp\": -157,\n        \"rsrq\": -34.5,\n        \"earfcn\": 41490,\n        \"nmr\": [\n          {\n            \"pci\": 143,\n            \"earfcn\": 41490,\n            \"rsrp\": -44,\n            \"rsrq\": -3.5\n          }\n        ]\n      }\n    ]\n  }\n}",
+                        "language": "json"
+                      }
+                    },
+                    "tries": 1,
+                    "skipped": false
+                  }
+                ],
+                [
+                  {
+                    "keyword": "Then",
+                    "title": "the response should equal to this JSON",
+                    "line": 77,
+                    "codeBlock": {
+                      "code": "{\n  \"sender\": \"nrf-test-device-id\",\n  \"topic\": \"data/m/d/nrf-test-device-id/d2c\",\n  \"payload\": {\n    \"appId\": \"GROUND_FIX\",\n    \"messageType\": \"DATA\",\n    \"data\": {\n      \"doReply\": false,\n      \"wifi\": {\n        \"accessPoints\": [\n          {\n            \"macAddress\": \"fd:70:40:b9:58:dc\"\n          },\n          {\n            \"macAddress\": \"c5:ab:c7:55:8d:e3\"\n          }\n        ]\n      },\n      \"lte\": [\n        {\n          \"mnc\": 260,\n          \"mcc\": 310,\n          \"eci\": 21858829,\n          \"tac\": 333,\n          \"rsrp\": -157,\n          \"rsrq\": -34.5,\n          \"earfcn\": 41490,\n          \"nmr\": [\n            {\n              \"pci\": 143,\n              \"earfcn\": 41490,\n              \"rsrp\": -44,\n              \"rsrq\": -3.5\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+                      "language": "json"
+                    }
+                  },
+                  {
+                    "logs": [
+                      {
+                        "message": [
+                          "Received ws message",
+                          "{\n  \"sender\": \"nrf-test-device-id\",\n  \"topic\": \"data/m/d/nrf-test-device-id/d2c\",\n  \"payload\": {\n    \"appId\": \"GROUND_FIX\",\n    \"messageType\": \"DATA\",\n    \"data\": {\n      \"doReply\": false,\n      \"wifi\": {\n        \"accessPoints\": [\n          {\n            \"macAddress\": \"fd:70:40:b9:58:dc\"\n          },\n          {\n            \"macAddress\": \"c5:ab:c7:55:8d:e3\"\n          }\n        ]\n      },\n      \"lte\": [\n        {\n          \"mnc\": 260,\n          \"mcc\": 310,\n          \"eci\": 21858829,\n          \"tac\": 333,\n          \"rsrp\": -157,\n          \"rsrq\": -34.5,\n          \"earfcn\": 41490,\n          \"nmr\": [\n            {\n              \"pci\": 143,\n              \"earfcn\": 41490,\n              \"rsrp\": -44,\n              \"rsrq\": -3.5\n            }\n          ]\n        }\n      ]\n    }\n  }\n}"
+                        ],
+                        "level": "progress",
+                        "ts": 411
+                      }
+                    ],
+                    "ok": true,
+                    "duration": 1004,
+                    "executed": {
+                      "keyword": "Then",
+                      "title": "the response should equal to this JSON",
+                      "line": 77,
+                      "codeBlock": {
+                        "code": "{\n  \"sender\": \"nrf-test-device-id\",\n  \"topic\": \"data/m/d/nrf-test-device-id/d2c\",\n  \"payload\": {\n    \"appId\": \"GROUND_FIX\",\n    \"messageType\": \"DATA\",\n    \"data\": {\n      \"doReply\": false,\n      \"wifi\": {\n        \"accessPoints\": [\n          {\n            \"macAddress\": \"fd:70:40:b9:58:dc\"\n          },\n          {\n            \"macAddress\": \"c5:ab:c7:55:8d:e3\"\n          }\n        ]\n      },\n      \"lte\": [\n        {\n          \"mnc\": 260,\n          \"mcc\": 310,\n          \"eci\": 21858829,\n          \"tac\": 333,\n          \"rsrp\": -157,\n          \"rsrq\": -34.5,\n          \"earfcn\": 41490,\n          \"nmr\": [\n            {\n              \"pci\": 143,\n              \"earfcn\": 41490,\n              \"rsrp\": -44,\n              \"rsrq\": -3.5\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+                        "language": "json"
+                      }
+                    },
+                    "tries": 1,
+                    "skipped": false
+                  }
+                ],
+                [
+                  {
+                    "keyword": "Then",
+                    "title": "I close connection",
+                    "line": 122
+                  },
+                  {
+                    "logs": [
+                      {
+                        "message": ["Close websocket"],
+                        "level": "progress",
+                        "ts": 1415
+                      }
+                    ],
+                    "ok": true,
+                    "duration": 1,
+                    "executed": {
+                      "keyword": "Then",
+                      "title": "I close connection",
+                      "line": 122
+                    },
+                    "tries": 1,
+                    "skipped": false
+                  }
+                ]
+              ],
+              "duration": 1399,
+              "logs": [],
+              "skipped": false
+            }
+          ]
+        ],
+        "duration": 1416,
+        "logs": [],
+        "skipped": false
+      }
+    ],
+    [
+      {
+        "root": "/",
+        "dir": "/Users/pud/Documents/repo/works/nrf.guide-backend/features",
+        "base": "DeviceInfo.feature.md",
+        "ext": ".md",
+        "name": "DeviceInfo.feature"
+      },
+      {
+        "ok": false,
+        "results": [
+          [
+            {
+              "keyword": "Scenario",
+              "title": "Background",
+              "line": 7,
+              "steps": [
+                {
+                  "keyword": "Given",
+                  "title": "There is a device as this JSON",
+                  "line": 9,
+                  "codeBlock": {
+                    "code": "{\n  \"id\": \"nrf-test-device-id\",\n  \"deviceId\": \"nrf-test-device-id\",\n  \"secret\": \"my-secret\",\n  \"name\": \"nrf-test-device-id\",\n  \"subType\": \"jitp-nordic-hardware\",\n  \"tags\": [\"temperature\", \"warehouse-east\"],\n  \"firmware\": {\n    \"supports\": [\"APP\", \"MODEM\"],\n    \"app\": {\n      \"version\": \"0.0.0-development\"\n    },\n    \"modem\": \"mfw_nrf9160_1.3.3\"\n  },\n  \"type\": \"Generic\"\n}",
+                    "language": "json"
+                  }
+                }
+              ]
+            },
+            {
+              "ok": true,
+              "results": [
+                [
+                  {
+                    "keyword": "Given",
+                    "title": "There is a device as this JSON",
+                    "line": 9,
+                    "codeBlock": {
+                      "code": "{\n  \"id\": \"nrf-test-device-id\",\n  \"deviceId\": \"nrf-test-device-id\",\n  \"secret\": \"my-secret\",\n  \"name\": \"nrf-test-device-id\",\n  \"subType\": \"jitp-nordic-hardware\",\n  \"tags\": [\"temperature\", \"warehouse-east\"],\n  \"firmware\": {\n    \"supports\": [\"APP\", \"MODEM\"],\n    \"app\": {\n      \"version\": \"0.0.0-development\"\n    },\n    \"modem\": \"mfw_nrf9160_1.3.3\"\n  },\n  \"type\": \"Generic\"\n}",
+                      "language": "json"
+                    }
+                  },
+                  {
+                    "logs": [
+                      {
+                        "message": [
+                          "Put data into database nrf-guide-test-WebsocketAPIdevicesTable0E555FB2-1MPYM52I6DS06"
+                        ],
+                        "level": "progress",
+                        "ts": 0
+                      },
+                      {
+                        "message": ["Request status: 200"],
+                        "level": "progress",
+                        "ts": 0
+                      }
+                    ],
+                    "ok": true,
+                    "duration": 18,
+                    "executed": {
+                      "keyword": "Given",
+                      "title": "There is a device as this JSON",
+                      "line": 9,
+                      "codeBlock": {
+                        "code": "{\n  \"id\": \"nrf-test-device-id\",\n  \"deviceId\": \"nrf-test-device-id\",\n  \"secret\": \"my-secret\",\n  \"name\": \"nrf-test-device-id\",\n  \"subType\": \"jitp-nordic-hardware\",\n  \"tags\": [\"temperature\", \"warehouse-east\"],\n  \"firmware\": {\n    \"supports\": [\"APP\", \"MODEM\"],\n    \"app\": {\n      \"version\": \"0.0.0-development\"\n    },\n    \"modem\": \"mfw_nrf9160_1.3.3\"\n  },\n  \"type\": \"Generic\"\n}",
+                        "language": "json"
+                      }
+                    },
+                    "tries": 1,
+                    "skipped": false
+                  }
+                ]
+              ],
+              "duration": 18,
+              "logs": [],
+              "skipped": false
+            }
+          ],
+          [
+            {
+              "keyword": "Scenario",
+              "title": "Connect with a valid code",
+              "line": 30,
+              "steps": [
+                {
+                  "keyword": "When",
+                  "title": "I connect websocket with code `my-secret`",
+                  "line": 32
+                },
+                {
+                  "keyword": "Then",
+                  "title": "the connection response should equal to this JSON",
+                  "line": 34,
+                  "codeBlock": {
+                    "code": "{\n  \"sender\": \"nrf-test-device-id\",\n  \"topic\": \"connection\",\n  \"payload\": {\n    \"id\": \"nrf-test-device-id1\",\n    \"deviceId\": \"nrf-test-device-id\",\n    \"name\": \"nrf-test-device-id\",\n    \"subType\": \"jitp-nordic-hardware\",\n    \"tags\": [\"temperature\", \"warehouse-east\"],\n    \"firmware\": {\n      \"supports\": [\"APP\", \"MODEM\"],\n      \"app\": {\n        \"version\": \"0.0.0-development\"\n      },\n      \"modem\": \"mfw_nrf9160_1.3.3\"\n    },\n    \"type\": \"Generic\"\n  }\n}",
+                    "language": "json"
+                  }
+                },
+                {
+                  "keyword": "Then",
+                  "title": "I close connection",
+                  "line": 58
+                }
+              ]
+            },
+            {
+              "ok": false,
+              "results": [
+                [
+                  {
+                    "keyword": "When",
+                    "title": "I connect websocket with code `my-secret`",
+                    "line": 32
+                  },
+                  {
+                    "logs": [
+                      {
+                        "message": [
+                          "Connect websocket to wss://atxx59uhfl.execute-api.eu-north-1.amazonaws.com/dev"
+                        ],
+                        "level": "progress",
+                        "ts": 18
+                      }
+                    ],
+                    "ok": true,
+                    "duration": 102,
+                    "executed": {
+                      "keyword": "When",
+                      "title": "I connect websocket with code `my-secret`",
+                      "line": 32
+                    },
+                    "tries": 1,
+                    "skipped": false
+                  }
+                ],
+                [
+                  {
+                    "keyword": "Then",
+                    "title": "the connection response should equal to this JSON",
+                    "line": 34,
+                    "codeBlock": {
+                      "code": "{\n  \"sender\": \"nrf-test-device-id\",\n  \"topic\": \"connection\",\n  \"payload\": {\n    \"id\": \"nrf-test-device-id1\",\n    \"deviceId\": \"nrf-test-device-id\",\n    \"name\": \"nrf-test-device-id\",\n    \"subType\": \"jitp-nordic-hardware\",\n    \"tags\": [\"temperature\", \"warehouse-east\"],\n    \"firmware\": {\n      \"supports\": [\"APP\", \"MODEM\"],\n      \"app\": {\n        \"version\": \"0.0.0-development\"\n      },\n      \"modem\": \"mfw_nrf9160_1.3.3\"\n    },\n    \"type\": \"Generic\"\n  }\n}",
+                      "language": "json"
+                    }
+                  },
+                  {
+                    "logs": [
+                      {
+                        "message": ["Fetching ws connection message"],
+                        "level": "progress",
+                        "ts": 120
+                      },
+                      {
+                        "message": [
+                          "Received message",
+                          "{\n  \"sender\": \"nrf-test-device-id\",\n  \"payload\": {\n    \"deviceId\": \"nrf-test-device-id\",\n    \"firmware\": {\n      \"app\": {\n        \"version\": \"0.0.0-development\"\n      },\n      \"supports\": [\n        \"APP\",\n        \"MODEM\"\n      ],\n      \"modem\": \"mfw_nrf9160_1.3.3\"\n    },\n    \"subType\": \"jitp-nordic-hardware\",\n    \"id\": \"nrf-test-device-id\",\n    \"name\": \"nrf-test-device-id\",\n    \"tags\": [\n      \"temperature\",\n      \"warehouse-east\"\n    ],\n    \"type\": \"Generic\"\n  },\n  \"topic\": \"connection\"\n}"
+                        ],
+                        "level": "progress",
+                        "ts": 120
+                      },
+                      {
+                        "message": [
+                          "Expected values to be strictly deep-equal:\n\u001b[32m+ actual\u001b[39m \u001b[31m- expected\u001b[39m \u001b[34m...\u001b[39m Lines skipped\n\n  {\n    payload: {\n\u001b[34m...\u001b[39m\n        ]\n      },\n\u001b[32m+\u001b[39m     id: 'nrf-test-device-id',\n\u001b[31m-\u001b[39m     id: 'nrf-test-device-id1',\n      name: 'nrf-test-device-id',\n\u001b[34m...\u001b[39m\n    sender: 'nrf-test-device-id',\n    topic: 'connection'\n  }"
+                        ],
+                        "level": "error",
+                        "ts": 120
+                      }
+                    ],
+                    "ok": false,
+                    "duration": 651,
+                    "executed": {
+                      "keyword": "Then",
+                      "title": "the connection response should equal to this JSON",
+                      "line": 34,
+                      "codeBlock": {
+                        "code": "{\n  \"sender\": \"nrf-test-device-id\",\n  \"topic\": \"connection\",\n  \"payload\": {\n    \"id\": \"nrf-test-device-id1\",\n    \"deviceId\": \"nrf-test-device-id\",\n    \"name\": \"nrf-test-device-id\",\n    \"subType\": \"jitp-nordic-hardware\",\n    \"tags\": [\"temperature\", \"warehouse-east\"],\n    \"firmware\": {\n      \"supports\": [\"APP\", \"MODEM\"],\n      \"app\": {\n        \"version\": \"0.0.0-development\"\n      },\n      \"modem\": \"mfw_nrf9160_1.3.3\"\n    },\n    \"type\": \"Generic\"\n  }\n}",
+                        "language": "json"
+                      }
+                    },
+                    "tries": 1,
+                    "skipped": false
+                  }
+                ],
+                [
+                  {
+                    "keyword": "Then",
+                    "title": "I close connection",
+                    "line": 58
+                  },
+                  {
+                    "logs": [],
+                    "ok": false,
+                    "skipped": true,
+                    "duration": 0,
+                    "executed": {
+                      "keyword": "Then",
+                      "title": "I close connection",
+                      "line": 58
+                    },
+                    "tries": 0
+                  }
+                ]
+              ],
+              "duration": 753,
+              "logs": [],
+              "skipped": false
+            }
+          ]
+        ],
+        "duration": 771,
+        "logs": [],
+        "skipped": false
+      }
+    ]
+  ],
+  "summary": {
+    "total": 3,
+    "passed": 2,
+    "failed": 1,
+    "duration": 3083,
+    "skipped": 0
+  },
+  "name": "nRF guide backend"
+}
