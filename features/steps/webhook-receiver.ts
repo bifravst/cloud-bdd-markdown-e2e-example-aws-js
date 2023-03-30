@@ -3,7 +3,7 @@ import {
 	ReceiveMessageCommand,
 	SQSClient,
 } from '@aws-sdk/client-sqs'
-import { Logger } from '@nordicsemiconductor/bdd-markdown'
+import { Logger, Scenario } from '@nordicsemiconductor/bdd-markdown'
 
 type WebhookRequest = {
 	headers: { [key: string]: string }
@@ -34,7 +34,7 @@ export class WebhookReceiver {
 	 */
 	async receiveWebhookRequest(
 		MessageGroupId: string,
-		log: Logger,
+		log: Logger<Scenario>,
 	): Promise<WebhookRequest> {
 		const { Messages } = await this.sqs.send(
 			new ReceiveMessageCommand({
