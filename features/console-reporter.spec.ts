@@ -6,14 +6,14 @@ describe('console-reporter', () => {
 	it('should exit with code 0 if the previous process runs successfully', (done) => {
 		const consoleReporter = spawn(
 			'npx',
-			['tsx', 'features/console-reporter.ts'],
+			['tsx', join('features', 'console-reporter.ts')],
 			{
 				cwd: process.cwd(),
 			},
 		)
 
 		const data = createReadStream(
-			join(process.cwd(), 'features/fixtures/report-success.json'),
+			join(process.cwd(), 'features', 'fixtures', 'report-success.json'),
 		)
 		data
 			.on('data', (data) => {
@@ -32,14 +32,14 @@ describe('console-reporter', () => {
 	it('should exit with code 1 if the previous process is failed', (done) => {
 		const consoleReporter = spawn(
 			'npx',
-			['tsx', 'features/console-reporter.ts'],
+			['tsx', join('features', 'console-reporter.ts')],
 			{
 				cwd: process.cwd(),
 			},
 		)
 
 		const data = createReadStream(
-			join(process.cwd(), 'features/fixtures/report-fail.json'),
+			join(process.cwd(), 'features', 'fixtures', 'report-fail.json'),
 		)
 		data
 			.on('data', (data) => {
