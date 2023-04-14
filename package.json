@@ -33,7 +33,7 @@
     "@nordicsemiconductor/asset-tracker-cloud-code-style": "12.0.20",
     "@nordicsemiconductor/bdd-markdown": "3.5.45",
     "@nordicsemiconductor/cloudformation-helpers": "8.0.0",
-    "@swc/jest": "0.2.24",
+    "@swc/jest": "0.2.26",
     "@types/aws-lambda": "8.10.114",
     "@types/glob": "8.1.0",
     "@types/jest": "29.5.0",
