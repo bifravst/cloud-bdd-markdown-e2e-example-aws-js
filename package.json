@@ -36,7 +36,7 @@
     "@swc/jest": "0.2.26",
     "@types/aws-lambda": "8.10.114",
     "@types/glob": "8.1.0",
-    "@types/jest": "29.5.0",
+    "@types/jest": "29.5.1",
     "@types/node": "18.15.11",
     "@types/yazl": "2.4.2",
     "aws-cdk-lib": "2.75.1",
