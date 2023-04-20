@@ -38,7 +38,7 @@ export const steps = (): StepRunner<World>[] => {
 
 			res = await fetch(url, {
 				method,
-				body: body,
+				body,
 			})
 
 			progress(`${res.status} ${res.statusText}`)
