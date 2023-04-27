@@ -4,7 +4,7 @@
   "description": "Example use of @nordicsemiconductor/bdd-markdown",
   "type": "module",
   "scripts": {
-    "test": "npx tsx features/run-features.ts | npx tsx features/console-reporter.ts",
+    "test": "$(set -o pipefail && npx tsx features/run-features.ts | npx tsx features/console-reporter.ts)",
     "test:unit": "jest",
     "prepare": "husky install"
   },
