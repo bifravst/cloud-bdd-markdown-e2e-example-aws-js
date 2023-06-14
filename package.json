@@ -34,7 +34,7 @@
     "@nordicsemiconductor/bdd-markdown": "3.6.17",
     "@nordicsemiconductor/cloudformation-helpers": "8.0.0",
     "@swc/jest": "0.2.26",
-    "@types/aws-lambda": "8.10.118",
+    "@types/aws-lambda": "8.10.119",
     "@types/glob": "8.1.0",
     "@types/jest": "29.5.2",
     "@types/node": "18.16.18",
