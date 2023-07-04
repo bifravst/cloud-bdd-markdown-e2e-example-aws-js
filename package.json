@@ -41,7 +41,7 @@
     "@types/yazl": "2.4.2",
     "aws-cdk-lib": "2.86.0",
     "cdk": "2.86.0",
-    "constructs": "10.2.67",
+    "constructs": "10.2.68",
     "dependency-tree": "10.0.9",
     "eslint-plugin-import": "2.27.5",
     "glob": "9.3.5",
