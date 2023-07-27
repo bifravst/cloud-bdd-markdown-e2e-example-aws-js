@@ -30,7 +30,7 @@
     "@aws-sdk/client-cloudformation": "3.378.0",
     "@aws-sdk/client-sqs": "3.378.0",
     "@aws-sdk/client-xray": "3.378.0",
-    "@nordicsemiconductor/asset-tracker-cloud-code-style": "12.0.61",
+    "@nordicsemiconductor/asset-tracker-cloud-code-style": "12.0.62",
     "@nordicsemiconductor/bdd-markdown": "5.6.0",
     "@nordicsemiconductor/cloudformation-helpers": "8.0.0",
     "@swc/jest": "0.2.27",
