@@ -29,16 +29,21 @@ const suiteResult = await new Promise<SuiteResult>((resolve) =>
 	}),
 )
 
-for await (const [f, result] of suiteResult.results) {
-	const traceIds = result.logs
-		.filter(
-			({ level, message }) =>
-				level === LogLevel.PROGRESS &&
-				message.find((m) => m.startsWith('x-amzn-trace-id')),
-		)
-		.map(({ message }) => message)
-		.flat()
-		.map((s) => s.split(' ')[1].split(';')[0].split('=')[1])
+for (const [f, featureResult] of suiteResult.results) {
+	const traceIds = featureResult.results.flatMap(([, scenarioResult]) =>
+		scenarioResult.results.flatMap(([, { logs }]) =>
+			logs
+				.filter(
+					({ level, message }) =>
+						level === LogLevel.PROGRESS &&
+						message.find((m) => m.startsWith('x-amzn-trace-id')),
+				)
+				.map(({ message }) => message)
+				.flat()
+				.map((s) => s.split(' ')[1].split(';')[0].split('=')[1]),
+		),
+	)
+
 	if (traceIds.length === 0) continue
 
 	const trace = await xray.send(

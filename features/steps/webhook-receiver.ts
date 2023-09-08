@@ -3,7 +3,7 @@ import {
 	ReceiveMessageCommand,
 	SQSClient,
 } from '@aws-sdk/client-sqs'
-import { Logger, Scenario } from '@nordicsemiconductor/bdd-markdown'
+import { Logger } from '@nordicsemiconductor/bdd-markdown'
 
 type WebhookRequest = {
 	headers: { [key: string]: string }
@@ -34,7 +34,7 @@ export class WebhookReceiver {
 	 */
 	async receiveWebhookRequest(
 		MessageGroupId: string,
-		log: Logger<Scenario>,
+		log: Logger,
 	): Promise<WebhookRequest> {
 		const { Messages } = await this.sqs.send(
 			new ReceiveMessageCommand({
@@ -46,10 +46,12 @@ export class WebhookReceiver {
 			}),
 		)
 
-		if (Messages === undefined || !Messages.length) {
+		const msg = Messages?.[0]
+
+		if (msg === undefined) {
 			throw new Error('No webhook request received!')
 		}
-		const { Body, MessageAttributes, ReceiptHandle, Attributes } = Messages[0]
+		const { Body, MessageAttributes, ReceiptHandle, Attributes } = msg
 		await this.sqs.send(
 			new DeleteMessageCommand({
 				QueueUrl: this.queueUrl,
@@ -59,7 +61,7 @@ export class WebhookReceiver {
 
 		if (Attributes === undefined || MessageAttributes === undefined)
 			throw new Error(
-				`No attributes defined in Message "${JSON.stringify(Messages[0])}"!`,
+				`No attributes defined in Message "${JSON.stringify(msg)}"!`,
 			)
 
 		const attrs = MessageAttributes
