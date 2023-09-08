@@ -1,3 +1,8 @@
+---
+exampleContext:
+  webhookReceiver: https://example.com
+---
+
 # Demonstrate the Webhook Receiver
 
 > As the author of a software component  
