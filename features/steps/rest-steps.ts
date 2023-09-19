@@ -45,10 +45,9 @@ export const steps = (): StepRunner<World>[] => {
 			{
 				regExp: /^the response status code should be (?<code>[0-9]+)$/,
 				schema: Type.Object({ code: Type.Integer() }),
-converters: {
+				converters: {
 					code: (s) => parseInt(s, 10),
 				},
-				
 			},
 			async ({ match: { code } }) => {
 				assert.equal(res?.status, code)
