@@ -84,7 +84,7 @@
   },
   "prettier": "@nordicsemiconductor/asset-tracker-cloud-code-style/.prettierrc",
   "dependencies": {
-    "@aws-lambda-powertools/tracer": "1.13.0"
+    "@aws-lambda-powertools/tracer": "1.13.1"
   },
   "jest": {
     "transform": {
