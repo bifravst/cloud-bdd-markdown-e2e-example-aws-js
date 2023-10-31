@@ -39,7 +39,7 @@
     "@types/aws-lambda": "8.10.125",
     "@types/glob": "8.1.0",
     "@types/jest": "29.5.7",
-    "@types/node": "20.8.9",
+    "@types/node": "20.8.10",
     "@types/yazl": "2.4.4",
     "aws-cdk-lib": "2.103.1",
     "cdk": "2.103.1",
