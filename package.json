@@ -40,7 +40,7 @@
     "@types/glob": "8.1.0",
     "@types/jest": "29.5.8",
     "@types/node": "20.9.0",
-    "@types/yazl": "2.4.4",
+    "@types/yazl": "2.4.5",
     "aws-cdk-lib": "2.104.0",
     "cdk": "2.104.0",
     "constructs": "10.3.0",
