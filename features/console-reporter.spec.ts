@@ -1,9 +1,11 @@
 import { spawn } from 'node:child_process'
 import { createReadStream } from 'node:fs'
 import { join } from 'node:path'
+import { describe, it } from 'node:test'
+import assert from 'node:assert/strict'
 
-describe('console-reporter', () => {
-	it('should exit with code 0 if the previous process runs successfully', (done) => {
+void describe('console-reporter', () => {
+	void it('should exit with code 0 if the previous process runs successfully', async () => {
 		const consoleReporter = spawn(
 			'npx',
 			['tsx', join('features', 'console-reporter.ts')],
@@ -23,13 +25,16 @@ describe('console-reporter', () => {
 				consoleReporter.stdin.end()
 			})
 
-		consoleReporter.on('close', (code) => {
-			expect(code).toBe(0)
-			done()
-		})
+		const code = await new Promise((resolve) =>
+			consoleReporter.on('close', (code) => {
+				resolve(code)
+			}),
+		)
+
+		assert.equal(code, 0)
 	})
 
-	it('should exit with code 1 if the previous process is failed', (done) => {
+	void it('should exit with code 1 if the previous process is failed', async () => {
 		const consoleReporter = spawn(
 			'npx',
 			['tsx', join('features', 'console-reporter.ts')],
@@ -49,9 +54,12 @@ describe('console-reporter', () => {
 				consoleReporter.stdin.end()
 			})
 
-		consoleReporter.on('close', (code) => {
-			expect(code).toBe(1)
-			done()
-		})
+		const code = await new Promise((resolve) =>
+			consoleReporter.on('close', (code) => {
+				resolve(code)
+			}),
+		)
+
+		assert.equal(code, 1)
 	})
 })
