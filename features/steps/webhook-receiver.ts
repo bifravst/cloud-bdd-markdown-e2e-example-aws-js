@@ -1,5 +1,6 @@
 import {
 	DeleteMessageCommand,
+	QueueAttributeName,
 	ReceiveMessageCommand,
 	SQSClient,
 } from '@aws-sdk/client-sqs'
@@ -41,7 +42,7 @@ export class WebhookReceiver {
 				QueueUrl: this.queueUrl,
 				MaxNumberOfMessages: 1,
 				MessageAttributeNames: ['All'],
-				AttributeNames: ['MessageGroupId'],
+				AttributeNames: ['MessageGroupId' as QueueAttributeName],
 				WaitTimeSeconds: 20,
 			}),
 		)

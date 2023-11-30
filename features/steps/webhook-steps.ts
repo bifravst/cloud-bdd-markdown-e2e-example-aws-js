@@ -1,6 +1,6 @@
 import {
 	codeBlockOrThrow,
-	groupMatcher,
+	regExpMatchedStep,
 	StepRunner,
 } from '@nordicsemiconductor/bdd-markdown'
 import assert from 'assert/strict'
@@ -20,7 +20,7 @@ export const steps = (): StepRunner<World>[] => {
 				await r.clearQueue()
 			},
 		},
-		groupMatcher(
+		regExpMatchedStep(
 			{
 				regExp:
 					/^the Webhook Receiver `(?<MessageGroupId>[^"]+)` should be called$/,

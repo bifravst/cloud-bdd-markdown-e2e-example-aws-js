@@ -1,7 +1,7 @@
 import {
 	codeBlockOrThrow,
 	StepRunner,
-	groupMatcher,
+	regExpMatchedStep,
 } from '@nordicsemiconductor/bdd-markdown'
 import assert from 'assert/strict'
 import fetch, { Response } from 'node-fetch'
@@ -12,7 +12,7 @@ export const steps = (): StepRunner<World>[] => {
 	let baseUrl: URL | undefined = undefined
 	let res: Response | undefined = undefined
 	return [
-		groupMatcher(
+		regExpMatchedStep(
 			{
 				regExp: /^the endpoint is `(?<endpoint>[^`]+)`$/,
 				schema: Type.Object({ endpoint: Type.String() }),
@@ -21,7 +21,7 @@ export const steps = (): StepRunner<World>[] => {
 				baseUrl = new URL(endpoint)
 			},
 		),
-		groupMatcher(
+		regExpMatchedStep(
 			{
 				regExp: /^I (?<method>POST) to `(?<resource>[^`]+)` with this JSON$/,
 				schema: Type.Object({ method: Type.String(), resource: Type.String() }),
@@ -41,7 +41,7 @@ export const steps = (): StepRunner<World>[] => {
 				progress(`x-amzn-trace-id: ${res.headers.get('x-amzn-trace-id')}`)
 			},
 		),
-		groupMatcher(
+		regExpMatchedStep(
 			{
 				regExp: /^the response status code should be (?<code>[0-9]+)$/,
 				schema: Type.Object({ code: Type.Integer() }),
