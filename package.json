@@ -6,7 +6,7 @@
   "scripts": {
     "test": "$(set -o pipefail && npx tsx features/run-features.ts | npx tsx features/console-reporter.ts)",
     "test:unit": "npx tsx --test ./features/*.spec.ts",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -51,6 +51,7 @@
     "eslint-plugin-prefer-arrow": "1.2.3",
     "eslint-plugin-unicorn": "50.0.1",
     "glob": "10.3.10",
+    "husky": "9.0.7",
     "node-fetch": "3.3.2",
     "tsx": "4.7.0",
     "yazl": "2.5.1"
