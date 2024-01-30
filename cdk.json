@@ -1,3 +1,0 @@
-{
-  "app": "npx tsx cdk/cloudformation-test.ts"
-}
