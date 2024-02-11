@@ -35,7 +35,7 @@
     "@nordicsemiconductor/bdd-markdown": "8.0.4",
     "@nordicsemiconductor/cloudformation-helpers": "9.0.2",
     "@nordicsemiconductor/eslint-config-asset-tracker-cloud-typescript": "17.0.0",
-    "@sinclair/typebox": "0.32.13",
+    "@sinclair/typebox": "0.32.14",
     "@swc/core": "1.4.0",
     "@types/aws-lambda": "8.10.133",
     "@types/glob": "8.1.0",
