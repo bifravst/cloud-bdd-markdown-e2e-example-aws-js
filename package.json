@@ -83,6 +83,6 @@
   },
   "prettier": "@bifravst/prettier-config",
   "dependencies": {
-    "@aws-lambda-powertools/tracer": "1.18.0"
+    "@aws-lambda-powertools/tracer": "1.18.1"
   }
 }
