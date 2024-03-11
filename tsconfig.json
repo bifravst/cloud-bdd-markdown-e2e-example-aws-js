@@ -1,8 +1,12 @@
 {
+  "include": ["**/*.ts"],
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es2019",
-    "lib": ["es2019"],
+    "outDir": "dist/",
+    "target": "ES2022",
+    "module": "ES2022",
+    "lib": ["ES2022"],
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "Node",
     "strict": true,
     "declaration": true,
     "skipLibCheck": true,
