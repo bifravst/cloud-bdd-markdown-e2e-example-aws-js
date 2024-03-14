@@ -23,7 +23,6 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit
 
-
       - name: Bootstrap AWS account for CDK
         run: |
           npx cdk bootstrap aws://`aws sts get-caller-identity | jq -r '.Account' | tr -d '\n'`/${{ secrets.AWS_REGION }}
