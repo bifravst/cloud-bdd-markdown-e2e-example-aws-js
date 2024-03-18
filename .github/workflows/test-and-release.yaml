@@ -8,6 +8,7 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION: ${{ secrets.AWS_REGION }}
   STACK_BASE_NAME: bddawsx-${{ github.sha }}
+  NODE_NO_WARNINGS: 1
 
 jobs:
   tests:
@@ -36,6 +37,16 @@ jobs:
           cat e2e-test-result.json | npx tsx features/console-reporter.ts
           cat e2e-test-result.json | npx tsx features/markdown-reporter.ts >> $GITHUB_STEP_SUMMARY
           cat e2e-test-result.json | npx tsx features/traceToMermaid.ts >> $GITHUB_STEP_SUMMARY
+
+      - name: Print failed End-to-End tests
+        if: failure()
+        run: cat e2e-test-result.json | npx tsx features/console-reporter.ts
+
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: e2e-test-result
+          path: e2e-test-result.json
 
       - name: Semantic release
         if: success()
