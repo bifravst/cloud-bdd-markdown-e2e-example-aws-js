@@ -8,8 +8,10 @@ import {
 	APIGatewayProxyEventV2WithRequestContext,
 	APIGatewayProxyResultV2,
 } from 'aws-lambda'
+import { Tracer } from '@aws-lambda-powertools/tracer'
 
-const sqs = new SQSClient({})
+const tracer = new Tracer({})
+const sqs = tracer.captureAWSv3Client(new SQSClient({}))
 
 export const handler = async (
 	event: APIGatewayProxyEventV2WithRequestContext<APIGatewayEventRequestContextV2>,

@@ -1,16 +1,22 @@
-import * as CDK from 'aws-cdk-lib'
-import * as IAM from 'aws-cdk-lib/aws-iam'
-import * as Lambda from 'aws-cdk-lib/aws-lambda'
-import * as Logs from 'aws-cdk-lib/aws-logs'
-import * as SQS from 'aws-cdk-lib/aws-sqs'
+import {
+	App,
+	CfnOutput,
+	Duration,
+	aws_iam as IAM,
+	aws_lambda as Lambda,
+	aws_logs as Logs,
+	RemovalPolicy,
+	aws_sqs as SQS,
+	Stack,
+} from 'aws-cdk-lib'
 import { PackedLambda } from './packLambda.js'
 
 /**
  * This is the CloudFormation stack which contains the webhook receiver resources.
  */
-export class WebhookReceiverStack extends CDK.Stack {
+export class WebhookReceiverStack extends Stack {
 	public constructor(
-		parent: CDK.App,
+		parent: App,
 		id: string,
 		{
 			lambdaSource,
@@ -23,7 +29,7 @@ export class WebhookReceiverStack extends CDK.Stack {
 		// This queue will store all the requests made to the API Gateway
 		const queue = new SQS.Queue(this, 'queue', {
 			fifo: true,
-			visibilityTimeout: CDK.Duration.seconds(5),
+			visibilityTimeout: Duration.seconds(5),
 			queueName: `${id}.fifo`,
 		})
 
@@ -31,10 +37,17 @@ export class WebhookReceiverStack extends CDK.Stack {
 		const lambda = new Lambda.Function(this, 'Lambda', {
 			description: 'Publishes webhook requests into SQS',
 			code: Lambda.Code.fromAsset(lambdaSource.lambdaZipFile),
+			layers: [
+				Lambda.LayerVersion.fromLayerVersionArn(
+					this,
+					'powertool-layer',
+					`arn:aws:lambda:${Stack.of(this).region}:094274105915:layer:AWSLambdaPowertoolsTypeScriptV2:3`,
+				),
+			],
 			handler: lambdaSource.handler,
 			runtime: Lambda.Runtime.NODEJS_20_X,
 			architecture: Lambda.Architecture.ARM_64,
-			timeout: CDK.Duration.seconds(15),
+			timeout: Duration.seconds(15),
 			initialPolicy: [
 				new IAM.PolicyStatement({
 					resources: ['arn:aws:logs:*:*:*'],
@@ -56,7 +69,7 @@ export class WebhookReceiverStack extends CDK.Stack {
 
 		// Create the log group here, so we can control the retention
 		new Logs.LogGroup(this, `LambdaLogGroup`, {
-			removalPolicy: CDK.RemovalPolicy.DESTROY,
+			removalPolicy: RemovalPolicy.DESTROY,
 			logGroupName: `/cdk/lambda/${lambda.functionName}`,
 			retention: Logs.RetentionDays.ONE_DAY,
 		})
@@ -66,11 +79,11 @@ export class WebhookReceiverStack extends CDK.Stack {
 		})
 
 		// Export these so the test runner can use them
-		new CDK.CfnOutput(this, 'ApiURL', {
+		new CfnOutput(this, 'ApiURL', {
 			value: fnUrl.url,
 			exportName: `${this.stackName}:ApiURL`,
 		})
-		new CDK.CfnOutput(this, 'QueueURL', {
+		new CfnOutput(this, 'QueueURL', {
 			value: queue.queueUrl,
 			exportName: `${this.stackName}:QueueURL`,
 		})
