@@ -65,6 +65,7 @@ export class WebhookReceiverStack extends Stack {
 			environment: {
 				SQS_QUEUE: queue.queueUrl,
 			},
+			tracing: Lambda.Tracing.ACTIVE,
 		})
 
 		// Create the log group here, so we can control the retention
