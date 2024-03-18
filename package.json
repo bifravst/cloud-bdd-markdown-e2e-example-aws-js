@@ -81,8 +81,5 @@
     "node": ">=20",
     "npm": ">=9"
   },
-  "prettier": "@bifravst/prettier-config",
-  "dependencies": {
-    "@aws-lambda-powertools/tracer": "2.0.3"
-  }
+  "prettier": "@bifravst/prettier-config"
 }

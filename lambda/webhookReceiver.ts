@@ -1,4 +1,3 @@
-import { Tracer } from '@aws-lambda-powertools/tracer'
 import {
 	MessageAttributeValue,
 	SendMessageCommand,
@@ -10,12 +9,7 @@ import {
 	APIGatewayProxyResultV2,
 } from 'aws-lambda'
 
-let sqs: SQSClient = new SQSClient({})
-
-if (process.env.ENABLE_TRACING === '1') {
-	const tracer = new Tracer({})
-	sqs = tracer.captureAWSv3Client(sqs)
-}
+const sqs = new SQSClient({})
 
 export const handler = async (
 	event: APIGatewayProxyEventV2WithRequestContext<APIGatewayEventRequestContextV2>,
