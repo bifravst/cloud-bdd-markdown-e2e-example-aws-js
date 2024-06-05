@@ -35,7 +35,7 @@
     "@bifravst/prettier-config": "1.0.1",
     "@commitlint/config-conventional": "19.2.2",
     "@nordicsemiconductor/bdd-markdown": "8.1.15",
-    "@nordicsemiconductor/cloudformation-helpers": "9.0.3",
+    "@nordicsemiconductor/cloudformation-helpers": "9.1.0",
     "@sinclair/typebox": "0.32.31",
     "@swc/core": "1.5.24",
     "@types/aws-lambda": "8.10.138",
