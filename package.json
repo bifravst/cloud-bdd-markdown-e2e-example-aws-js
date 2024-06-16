@@ -37,7 +37,7 @@
     "@nordicsemiconductor/bdd-markdown": "8.2.1",
     "@nordicsemiconductor/cloudformation-helpers": "9.1.0",
     "@sinclair/typebox": "0.32.32",
-    "@swc/core": "1.6.0",
+    "@swc/core": "1.6.1",
     "@types/aws-lambda": "8.10.138",
     "@types/glob": "8.1.0",
     "@types/node": "20.14.2",
