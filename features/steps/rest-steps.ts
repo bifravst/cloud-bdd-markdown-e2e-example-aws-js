@@ -1,11 +1,9 @@
-import {
-	codeBlockOrThrow,
-	StepRunner,
-	regExpMatchedStep,
-} from '@nordicsemiconductor/bdd-markdown'
+import type { StepRunner } from '@bifravst/bdd-markdown'
+import { codeBlockOrThrow, regExpMatchedStep } from '@bifravst/bdd-markdown'
 import assert from 'assert/strict'
-import fetch, { Response } from 'node-fetch'
-import { World } from '../run-features.js'
+import type { Response } from 'node-fetch'
+import fetch from 'node-fetch'
+import type { World } from '../run-features.js'
 import { Type } from '@sinclair/typebox'
 
 export const steps = (): StepRunner<World>[] => {

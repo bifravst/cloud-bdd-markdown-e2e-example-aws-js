@@ -1,5 +1,5 @@
+import type { App } from 'aws-cdk-lib'
 import {
-	App,
 	CfnOutput,
 	Duration,
 	aws_iam as IAM,
@@ -9,7 +9,7 @@ import {
 	aws_sqs as SQS,
 	Stack,
 } from 'aws-cdk-lib'
-import { PackedLambda } from './packLambda.js'
+import type { PackedLambda } from './packLambda.js'
 
 /**
  * This is the CloudFormation stack which contains the webhook receiver resources.

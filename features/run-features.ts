@@ -1,6 +1,6 @@
 import { CloudFormationClient } from '@aws-sdk/client-cloudformation'
-import { runFolder } from '@nordicsemiconductor/bdd-markdown'
-import { stackOutput } from '@nordicsemiconductor/cloudformation-helpers'
+import { runFolder } from '@bifravst/bdd-markdown'
+import { stackOutput } from '@bifravst/cloudformation-helpers'
 import * as path from 'path'
 import { stackBaseName } from '../cdk/stackBaseName.js'
 import { steps as restSteps } from './steps/rest-steps.js'

@@ -1,10 +1,10 @@
+import type { QueueAttributeName } from '@aws-sdk/client-sqs'
 import {
 	DeleteMessageCommand,
-	QueueAttributeName,
 	ReceiveMessageCommand,
 	SQSClient,
 } from '@aws-sdk/client-sqs'
-import { Logger } from '@nordicsemiconductor/bdd-markdown'
+import type { Logger } from '@bifravst/bdd-markdown'
 
 type WebhookRequest = {
 	headers: { [key: string]: string }

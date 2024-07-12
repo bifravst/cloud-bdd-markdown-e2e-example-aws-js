@@ -1,9 +1,7 @@
-import {
-	GetTraceGraphCommand,
-	GetTraceGraphCommandOutput,
-	XRayClient,
-} from '@aws-sdk/client-xray'
-import { LogLevel, SuiteResult } from '@nordicsemiconductor/bdd-markdown'
+import type { GetTraceGraphCommandOutput } from '@aws-sdk/client-xray'
+import { GetTraceGraphCommand, XRayClient } from '@aws-sdk/client-xray'
+import type { SuiteResult } from '@bifravst/bdd-markdown'
+import { LogLevel } from '@bifravst/bdd-markdown'
 import os from 'os'
 
 const traceToMermaid = (trace: GetTraceGraphCommandOutput): string => {

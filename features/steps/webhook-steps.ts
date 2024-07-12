@@ -1,10 +1,7 @@
-import {
-	codeBlockOrThrow,
-	regExpMatchedStep,
-	StepRunner,
-} from '@nordicsemiconductor/bdd-markdown'
+import type { StepRunner } from '@bifravst/bdd-markdown'
+import { codeBlockOrThrow, regExpMatchedStep } from '@bifravst/bdd-markdown'
 import assert from 'assert/strict'
-import { World } from '../run-features.js'
+import type { World } from '../run-features.js'
 import { WebhookReceiver } from './webhook-receiver.js'
 import { Type } from '@sinclair/typebox'
 

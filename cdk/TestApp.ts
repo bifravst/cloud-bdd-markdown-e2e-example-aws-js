@@ -1,6 +1,6 @@
 import * as CDK from 'aws-cdk-lib'
-import { AppProps } from 'aws-cdk-lib'
-import { PackedLambda } from './packLambda.js'
+import type { AppProps } from 'aws-cdk-lib'
+import type { PackedLambda } from './packLambda.js'
 import { WebhookReceiverStack } from './WebhookReceiverStack.js'
 
 export class TestApp extends CDK.App {

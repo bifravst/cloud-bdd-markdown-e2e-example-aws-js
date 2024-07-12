@@ -1,7 +1,7 @@
 {
   "name": "@bifravst/e2e-bdd-test-runner-example",
   "version": "0.0.0-development",
-  "description": "Example use of @nordicsemiconductor/bdd-markdown",
+  "description": "Example use of @bifravst/bdd-markdown",
   "type": "module",
   "scripts": {
     "test": "$(set -o pipefail && npx tsx features/run-features.ts | npx tsx features/console-reporter.ts)",
@@ -31,11 +31,11 @@
     "@aws-sdk/client-cloudformation": "3.614.0",
     "@aws-sdk/client-sqs": "3.614.0",
     "@aws-sdk/client-xray": "3.614.0",
+    "@bifravst/bdd-markdown": "8.2.3",
+    "@bifravst/cloudformation-helpers": "9.1.0",
     "@bifravst/eslint-config-typescript": "6.1.9",
     "@bifravst/prettier-config": "1.0.3",
     "@commitlint/config-conventional": "19.2.2",
-    "@bifravst/bdd-markdown": "*",
-    "@bifravst/cloudformation-helpers": "*",
     "@sinclair/typebox": "0.32.34",
     "@swc/core": "1.6.13",
     "@types/aws-lambda": "8.10.141",

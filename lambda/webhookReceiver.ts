@@ -1,9 +1,6 @@
-import {
-	MessageAttributeValue,
-	SendMessageCommand,
-	SQSClient,
-} from '@aws-sdk/client-sqs'
-import {
+import type { MessageAttributeValue } from '@aws-sdk/client-sqs'
+import { SendMessageCommand, SQSClient } from '@aws-sdk/client-sqs'
+import type {
 	APIGatewayEventRequestContextV2,
 	APIGatewayProxyEventV2WithRequestContext,
 	APIGatewayProxyResultV2,
