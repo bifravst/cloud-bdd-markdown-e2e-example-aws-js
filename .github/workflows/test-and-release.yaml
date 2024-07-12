@@ -50,7 +50,6 @@ jobs:
 
       - name: Semantic release
         if: success()
-        continue-on-error: true
         run: |
           npm i --no-save semantic-release@next
           npx semantic-release
