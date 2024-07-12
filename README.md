@@ -8,7 +8,7 @@
 [![ESLint: TypeScript](https://img.shields.io/badge/ESLint-TypeScript-blue.svg)](https://github.com/typescript-eslint/typescript-eslint)
 
 Example use of
-[rsrp-bar/bdd-markdown](https://www.npmjs.com/package/rsrp-bar/bdd-markdown).
+[@bifravst/bdd-markdown](https://www.npmjs.com/package/@bifravst/bdd-markdown).
 
     npm ci           # install dependencies
     npx cdk deploy   # deploy the stack to your AWS account
