@@ -7,7 +7,7 @@ export type PackedLambda = { lambdaZipFile: string; handler: string }
 
 /**
  * AWS Lambda does not yet support layers when using ESM.
- * @see https://github.com/NordicSemiconductor/asset-tracker-cloud-aws-js/issues/572
+ * @see https://github.com/bifravst/asset-tracker-cloud-aws-js/issues/572
  *
  * However, symlinking the node_modules folder from the layer solves the problem.
  * @see https://github.com/vibe/aws-esm-modules-layer-support

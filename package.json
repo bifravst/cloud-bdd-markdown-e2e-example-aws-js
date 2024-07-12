@@ -1,5 +1,5 @@
 {
-  "name": "@nordicsemiconductor/e2e-bdd-test-runner-example",
+  "name": "@bifravst/e2e-bdd-test-runner-example",
   "version": "0.0.0-development",
   "description": "Example use of @nordicsemiconductor/bdd-markdown",
   "type": "module",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NordicSemiconductor/cloud-bdd-markdown-e2e-example-aws-js.git"
+    "url": "git+https://github.com/bifravst/bdd-markdown-e2e-example-aws.git"
   },
   "keywords": [
     "bdd",
@@ -23,9 +23,9 @@
   "author": "Nordic Semiconductor ASA | nordicsemi.no",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/NordicSemiconductor/cloud-bdd-markdown-e2e-example-aws-js/issues"
+    "url": "https://github.com/bifravst/bdd-markdown-e2e-example-aws/issues"
   },
-  "homepage": "https://github.com/NordicSemiconductor/cloud-bdd-markdown-e2e-example-aws-js#readme",
+  "homepage": "https://github.com/bifravst/bdd-markdown-e2e-example-aws#readme",
   "devDependencies": {
     "@aws-lambda-powertools/tracer": "2.4.0",
     "@aws-sdk/client-cloudformation": "3.614.0",
@@ -34,8 +34,8 @@
     "@bifravst/eslint-config-typescript": "6.1.9",
     "@bifravst/prettier-config": "1.0.3",
     "@commitlint/config-conventional": "19.2.2",
-    "@nordicsemiconductor/bdd-markdown": "8.2.3",
-    "@nordicsemiconductor/cloudformation-helpers": "9.1.0",
+    "@bifravst/bdd-markdown": "*",
+    "@bifravst/cloudformation-helpers": "*",
     "@sinclair/typebox": "0.32.34",
     "@swc/core": "1.6.13",
     "@types/aws-lambda": "8.10.141",
