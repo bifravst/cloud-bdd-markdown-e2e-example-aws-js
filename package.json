@@ -43,12 +43,14 @@
     "@types/node": "20.14.10",
     "@types/yazl": "2.4.5",
     "aws-cdk-lib": "2.149.0",
+    "cat": "*",
     "cdk": "2.149.0",
     "constructs": "10.3.0",
     "dependency-tree": "11.0.1",
     "glob": "11.0.0",
     "husky": "9.0.11",
     "node-fetch": "3.3.2",
+    "package.json": "*",
     "tsx": "4.16.2",
     "yazl": "2.5.1"
   },
@@ -82,5 +84,9 @@
     "node": ">=20",
     "npm": ">=10"
   },
-  "prettier": "@bifravst/prettier-config"
+  "prettier": "@bifravst/prettier-config",
+  "peerDependencies": {
+    "cat": "^0.2.0",
+    "package.json": "^2.0.1"
+  }
 }
