@@ -7,6 +7,12 @@ env:
   STACK_BASE_NAME: bddawsx-${{ github.sha }}
   NODE_NO_WARNINGS: 1
 
+permissions:
+  id-token: write
+  contents: write
+  issues: write
+  actions: write
+
 jobs:
   tests:
     runs-on: ubuntu-22.04
