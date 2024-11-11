@@ -29,7 +29,7 @@
   "devDependencies": {
     "@aws-lambda-powertools/tracer": "2.10.0",
     "@aws-sdk/client-cloudformation": "3.687.0",
-    "@aws-sdk/client-sqs": "3.687.0",
+    "@aws-sdk/client-sqs": "3.689.0",
     "@aws-sdk/client-xray": "3.687.0",
     "@bifravst/bdd-markdown": "8.2.31",
     "@bifravst/cloudformation-helpers": "9.1.1",
