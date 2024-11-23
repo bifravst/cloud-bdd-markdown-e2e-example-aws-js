@@ -45,7 +45,7 @@ export class WebhookReceiverStack extends Stack {
 				),
 			],
 			handler: lambdaSource.handler,
-			runtime: Lambda.Runtime.NODEJS_20_X,
+			runtime: Lambda.Runtime.NODEJS_22_X,
 			architecture: Lambda.Architecture.ARM_64,
 			timeout: Duration.seconds(15),
 			initialPolicy: [
