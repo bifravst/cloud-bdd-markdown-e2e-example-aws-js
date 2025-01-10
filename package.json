@@ -47,7 +47,7 @@
     "commitlint": "19.6.1",
     "constructs": "10.4.2",
     "dependency-tree": "11.0.1",
-    "glob": "11.0.0",
+    "glob": "11.0.1",
     "husky": "9.1.7",
     "node-fetch": "3.3.2",
     "tsx": "4.19.2",
