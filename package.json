@@ -34,7 +34,7 @@
     "@bifravst/bdd-markdown": "8.2.59",
     "@bifravst/cloudformation-helpers": "9.1.1",
     "@bifravst/eslint-config-typescript": "6.1.20",
-    "@bifravst/prettier-config": "1.1.6",
+    "@bifravst/prettier-config": "1.1.7",
     "@commitlint/config-conventional": "19.7.1",
     "@sinclair/typebox": "0.34.27",
     "@swc/core": "1.10.18",
