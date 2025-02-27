@@ -37,7 +37,7 @@
     "@bifravst/prettier-config": "1.1.7",
     "@commitlint/config-conventional": "19.7.1",
     "@sinclair/typebox": "0.34.28",
-    "@swc/core": "1.11.1",
+    "@swc/core": "1.11.4",
     "@types/aws-lambda": "8.10.147",
     "@types/glob": "8.1.0",
     "@types/node": "22.13.5",
